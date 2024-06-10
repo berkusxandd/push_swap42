@@ -1,6 +1,19 @@
 #include "push_swap.h"
 #include <stdio.h>
 
+// void basic_stack_sort(t_node **stack)
+// {
+// 	t_stack_node	*biggest_node;
+
+// 	biggest_node = find_max(*a);
+// 	if (biggest_node == *a)
+// 		ra(a, 0);
+// 	else if ((*a)->next == biggest_node)
+// 		rra(a, 0);
+// 	if ((*a)->nbr > (*a)->next->nbr)
+// 		sa(a, 0);
+// }
+
 int is_value_unique(char **all_nbr)
 {
 	int i;
@@ -73,6 +86,9 @@ int	main(int ac, char **av, char **env)
 		return -1;
 	}
 	stack_a = create_stack_a(av);
+	print_stack(stack_a);
+	r_rotate(&stack_a);
+	print_stack(stack_a);
 	free_stack(&stack_a);
 	return (1);
 }
