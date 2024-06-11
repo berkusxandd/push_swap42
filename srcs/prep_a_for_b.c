@@ -2,22 +2,22 @@
 
 void rotate_2_for_a(t_node **stack_a, t_node **stack_b)
 {
-	while ((get_cheapest_ab(stack_a))->target_value != (*stack_b)->nbr)
+	while ((get_cheapest_ab(stack_a))->target_value != (*stack_b)->nbr && (*stack_a)->nbr != get_cheapest_ab(stack_a)->nbr)
 	{
 		rotate(stack_a,'a',0);
 		rotate(stack_b,'b',0);
-	}
 	ft_putstr_fd("rr\n",1);
+	}
 }
 
 void r_rotate_2_for_a(t_node **stack_a, t_node **stack_b)
 {
-	while ((get_cheapest_ab(stack_a))->target_value != (*stack_b)->nbr)
+	while ((get_cheapest_ab(stack_a))->target_value != (*stack_b)->nbr && (*stack_a)->nbr != get_cheapest_ab(stack_a)->nbr)
 	{
 		r_rotate(stack_a,'a',0);
 		r_rotate(stack_b,'b',0);
-	}
 	ft_putstr_fd("rrr\n",1);
+	}
 }
 
 void set_targets_for_a(t_node *stack_a, t_node *stack_b)
@@ -43,6 +43,7 @@ void set_targets_for_a(t_node *stack_a, t_node *stack_b)
 
 	tmp_a = tmp_a->next;
 	}
+	
 }
 
 void set_costs_for_a(t_node *stack_a, t_node *stack_b)
@@ -59,7 +60,7 @@ void set_costs_for_a(t_node *stack_a, t_node *stack_b)
 	{
 		i = get_value_index(stack_a,tmp_a->nbr);
 		tmp_a->cost = i;
-		if (!(i > (stack_len(stack_a) / 2)))
+		if ((i > (stack_len(stack_a) / 2)))
 			tmp_a->cost = len_a - i;
 		if (get_value_index(stack_b, tmp_a->target_value) > ((stack_len(stack_b) / 2)))
 			tmp_a->cost += len_b - get_value_index(stack_b, tmp_a->target_value);
@@ -67,6 +68,7 @@ void set_costs_for_a(t_node *stack_a, t_node *stack_b)
 			tmp_a->cost += (get_value_index(stack_b, tmp_a->target_value));
 		tmp_a = tmp_a->next;
 	}
+	
 }
 
 void put_node_top(t_node **stack, t_node *node,char s)

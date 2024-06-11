@@ -59,11 +59,13 @@ void sort_stacks(t_node **stack_a)
 		prepare_stacks(stack_a, &stack_b);
 		push_smart_ab(stack_a,&stack_b,get_cheapest_ab(stack_a));
 	}
-	sort_basic(stack_a);
+	if (stack_sorted(*stack_a) == 0)
+		sort_basic(stack_a);
 	while (stack_len(stack_b) > 0)
 	{
 		set_targets_for_b(stack_a,&stack_b);
-		push_smart_ba(stack_a,&stack_b,get_node_w_value(*stack_a, stack_b->target_value));
+		push_smart_ba(stack_a,&stack_b);
 	}
 	put_node_top(stack_a, find_min(*stack_a),'a');
+	//print_stack(*stack_a);
 }

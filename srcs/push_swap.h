@@ -40,7 +40,7 @@ void prepare_stacks(t_node **stack_a, t_node **stack_b);
 void push_smart_ab(t_node **stack_a, t_node **stack_b, t_node *cheapest);
 t_node  *get_node_w_value(t_node *stack, long value);
 void set_targets_for_b(t_node **stack_a, t_node **stack_b);
-void push_smart_ba(t_node **stack_a, t_node **stack_b, t_node *cheapest);
+void push_smart_ba(t_node **stack_a, t_node **stack_b);
 void put_node_top(t_node **stack, t_node *node, char s);
 t_node *get_cheapest_ab(t_node **stack_a);
 #endif

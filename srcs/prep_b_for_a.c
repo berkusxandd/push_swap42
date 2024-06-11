@@ -8,9 +8,6 @@ void set_targets_for_b(t_node **stack_a, t_node **stack_b)
 	t_node *tmp_a;
 
 	tmp_b = *stack_b;
-
-	if (stack_a == NULL || !*stack_a)
-		return;
 	while (tmp_b)
 	{
 		 target_value = LONG_MAX;
@@ -28,8 +25,8 @@ void set_targets_for_b(t_node **stack_a, t_node **stack_b)
 	}
 }
 
-void push_smart_ba(t_node **stack_a, t_node **stack_b, t_node *cheapest)
+void push_smart_ba(t_node **stack_a, t_node **stack_b)
 {
-	put_node_top(stack_a, cheapest,'a');
+	put_node_top(stack_a, get_node_w_value(*stack_a, (*stack_b)->target_value),'a');
 	push(stack_a,stack_b,'a');
 }
