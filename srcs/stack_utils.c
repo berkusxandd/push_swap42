@@ -4,7 +4,7 @@ int	stack_len(t_node *stack)
 {
 	int	count;
 
-	if (!stack) 
+	if (!stack)
 		return (0);
 	count = 0;
 	while (stack)
@@ -20,6 +20,14 @@ t_node	*find_last(t_node *stack)
 	if (!stack)
 		return (NULL);
 	while (stack->next)
+		stack = stack->next;
+	return (stack);
+}
+t_node	*find_one_before_last(t_node *stack)
+{
+	if (!stack)
+		return (NULL);
+	while (stack->next->next)
 		stack = stack->next;
 	return (stack);
 }
@@ -44,7 +52,7 @@ t_node	*find_min(t_node *stack)
 
 	if (!stack)
 		return (NULL);
-	min = stack->nbr;
+	min = LONG_MAX;
 	while (stack)
 	{
 		if (stack->nbr < min)
@@ -54,7 +62,7 @@ t_node	*find_min(t_node *stack)
 		}
 		stack = stack->next;
 	}
-	return (min_node); 
+	return (min_node);
 }
 
 t_node	*find_max(t_node *stack)
@@ -64,7 +72,7 @@ t_node	*find_max(t_node *stack)
 
 	if (!stack)
 		return (NULL);
-	max = stack->nbr;
+	max = LONG_MIN;
 	while (stack)
 	{
 		if (stack->nbr > max)

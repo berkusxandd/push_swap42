@@ -67,8 +67,7 @@ t_node	*create_stack_a(char **av)
 	stack_a = ft_stnew(all_nbr[0]);
 	while (all_nbr[i] != NULL)
 	{
-		ft_stadd_back(&stack_a, ft_stnew(all_nbr[i]));
-		i++;
+		ft_stadd_back(&stack_a, ft_stnew(all_nbr[i++]));
 	}
 	free_tab(all_nbr);
 	return (stack_a);
@@ -80,15 +79,25 @@ int	main(int ac, char **av, char **env)
 
 	if (!env || ac < 2)
 		return (1);
-	if (av[1][0] == '\0' || check_arg(av) == 0)
+	if (av[1][0] == '\0') //check_arg(av) == 0
 	{
 		ft_putstr_fd("Error\n",2);
 		return -1;
 	}
 	stack_a = create_stack_a(av);
-	print_stack(stack_a);
-	r_rotate(&stack_a);
-	print_stack(stack_a);
-	free_stack(&stack_a);
+	if (stack_sorted(stack_a) != 1)
+	{
+		if (stack_len(stack_a) == 2)
+			swap(&stack_a,'a');
+		else if (stack_len(stack_a) == 3)
+			sort_basic(&stack_a);
+		else
+			sort_stacks(&stack_a);
+	}
+	 //print_stack(stack_a);
+	 //print_stack(stack_a);
+	// sort_basic(&stack_a);
+	// print_stack(stack_a);
+	// free_stack(&stack_a);
 	return (1);
 }
